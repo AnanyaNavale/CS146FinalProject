@@ -6,6 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
 
+    // We added this to fix the CS0103 error!
+    public Animator animator;
+
     private Rigidbody2D rb;
     private Vector2 movement;
 
@@ -18,12 +21,26 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Get input from WASD or Arrow Keys
+        // Notice we removed "Vector2" here so it updates the main class variable
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        // Always update speed so the Animator knows when to switch between Idle and Walk
+        animator.SetFloat("Speed", movement.sqrMagnitude);
+
+        // ONLY update the direction parameters if the player is actively pressing a key
+        // This makes the Idle Blend Tree remember the last faced direction
+        if (movement.sqrMagnitude > 0.01f)
+        {
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+        }
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        // .normalized ensures the player doesn't move faster diagonally
+        rb.MovePosition(rb.position + movement.normalized * speed * Time.fixedDeltaTime);
     }
 }
