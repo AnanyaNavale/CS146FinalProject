@@ -3898,6 +3898,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Brenda
       objectReference: {fileID: 0}
+    - target: {fileID: 3662434925808223462, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4374889710775250199, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5289498
