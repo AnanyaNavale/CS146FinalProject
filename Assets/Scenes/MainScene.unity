@@ -1901,6 +1901,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 281
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 281
+      objectReference: {fileID: 0}
     - target: {fileID: 3486318590115275895, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_Name
       value: NPC_Seismologist
@@ -3859,12 +3867,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 281
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 281
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -300
+      value: -652
       objectReference: {fileID: 0}
     - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 150
+      value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 3486318590115275895, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_Name
@@ -5004,6 +5020,10 @@ PrefabInstance:
     - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 76
+      objectReference: {fileID: 0}
+    - target: {fileID: 3455726622302882082, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3486318590115275895, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_Name
