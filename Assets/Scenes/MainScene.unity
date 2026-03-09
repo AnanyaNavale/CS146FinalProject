@@ -2039,6 +2039,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Seismologist
       objectReference: {fileID: 0}
+    - target: {fileID: 3662434925808223462, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_Radius
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4374889710775250199, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.13511817
@@ -2091,10 +2095,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5263210255893720996, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 14.418
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263210255893720996, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 16.208
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263210255893720996, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1.2391422
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263210255893720996, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1105595
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263210255893720996, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -7.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263210255893720996, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 13.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660150603591251880, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: greeting
+      value: '"Hello, detective. Did you feel the ground shake?"'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660150603591251880, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: answerOne
+      value: Professor Vance? Nothing! I was entirely focused on my acoustic survey.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660150603591251880, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: answerTwo
+      value: I was halfway up the stairs inside the main clock tower when I heard
+        glass shatter.
+      objectReference: {fileID: 0}
     - target: {fileID: 7660150603591251880, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 7660150603591251880, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: evidenceClock
+      value: A broken gear? I study resonant frequencies, detective, not antique
+        clock repair
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660150603591251880, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: evidenceRubbing
+      value: A charcoal rubbing of a plaque? What does that have to do with my acoustic
+        survey?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660150603591251880, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: evidenceCasebook
+      value: Wait, a 1906 photo of the rubble? ...Fine! The clock tower collapsed
+        in the quake. I wasn't up there. I was taking a nap in the choir loft!
+      objectReference: {fileID: 0}
     - target: {fileID: 8735235304390759350, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -3830,41 +3886,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 951403276214470936, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
-      propertyPath: m_text
-      value: Where were you when the shaking started?
+    - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3486318590115275895, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_Name
       value: NPC_Brenda
       objectReference: {fileID: 0}
-    - target: {fileID: 3662434925808223462, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
-      propertyPath: m_Radius
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3852755752868103525, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
-      propertyPath: m_text
-      value: Are any important artifacts missing?
-      objectReference: {fileID: 0}
     - target: {fileID: 4374889710775250199, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.61815
+      value: 0.5289498
       objectReference: {fileID: 0}
     - target: {fileID: 4374889710775250199, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.61815
+      value: 0.5289498
       objectReference: {fileID: 0}
     - target: {fileID: 4374889710775250199, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.13036332
+      value: 0.111551635
       objectReference: {fileID: 0}
     - target: {fileID: 4374889710775250199, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3
+      value: 0.401
       objectReference: {fileID: 0}
     - target: {fileID: 4374889710775250199, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.71
+      value: 10.606
       objectReference: {fileID: 0}
     - target: {fileID: 4374889710775250199, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3900,11 +3952,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5263210255893720996, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalScale.x
-      value: -0.32438278
+      value: -0.35393924
       objectReference: {fileID: 0}
     - target: {fileID: 5263210255893720996, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2736042
+      value: 0.3209138
       objectReference: {fileID: 0}
     - target: {fileID: 5263210255893720996, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3912,15 +3964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5263210255893720996, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6480253410712408273, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.8499999
-      objectReference: {fileID: 0}
-    - target: {fileID: 6480253410712408273, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.10000038
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 7660150603591251880, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: greeting
@@ -3942,14 +3986,14 @@ PrefabInstance:
       objectReference: {fileID: 519420031}
     - target: {fileID: 7660150603591251880, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: evidenceClock
-      value: A fresh charcoal rubbing of the Founder's Plaque? But... I told everyone
-        it was destroyed! ...Alright, fine. I hid the plaque myself to protect it
-        from scavengers, but I needed the rubbing to translate the inscription!
+      value: A gear? Perhaps from the tower, but I deal in documents and inscriptions,
+        not machinery.
       objectReference: {fileID: 0}
     - target: {fileID: 7660150603591251880, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: evidenceRubbing
-      value: A gear? Perhaps from the tower, but I deal in documents and inscriptions,
-        not machinery.
+      value: A fresh charcoal rubbing of the Founder's Plaque? But... I told everyone
+        it was destroyed! ...Alright, fine. I hid the plaque myself to protect it
+        from scavengers, but I needed the rubbing to translate the inscription!
       objectReference: {fileID: 0}
     - target: {fileID: 7660150603591251880, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: evidenceCasebook
@@ -3959,7 +4003,7 @@ PrefabInstance:
     - target: {fileID: 8735235304390759350, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2075820177, guid: d5a7368d8119b294388ac4db4462bf8f, type: 3}
+      objectReference: {fileID: 1738075115, guid: d5a7368d8119b294388ac4db4462bf8f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4886,17 +4930,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 281.345
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 281.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -652
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480689047538411457, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 76
+      objectReference: {fileID: 0}
     - target: {fileID: 3486318590115275895, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_Name
       value: NPC_Builder
       objectReference: {fileID: 0}
+    - target: {fileID: 4311325720109487614, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4374889710775250199, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.77
+      value: 9.9576
       objectReference: {fileID: 0}
     - target: {fileID: 4374889710775250199, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.1
+      value: 4.02
       objectReference: {fileID: 0}
     - target: {fileID: 4374889710775250199, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4929,6 +4993,22 @@ PrefabInstance:
     - target: {fileID: 4374889710775250199, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5212888380818794553, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5212888380818794553, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_Color.b
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5212888380818794553, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_Color.g
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5212888380818794553, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
+      propertyPath: m_Color.r
+      value: 0.21960786
       objectReference: {fileID: 0}
     - target: {fileID: 7660150603591251880, guid: 97d866a41255ff541ab279c1dca83824, type: 3}
       propertyPath: mainCamera

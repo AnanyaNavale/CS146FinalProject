@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class NPCInteraction : MonoBehaviour
@@ -13,6 +14,12 @@ public class NPCInteraction : MonoBehaviour
     public GameObject casebookButton;
     public GameObject rubbingButton;
     public GameObject clockButton;
+
+    [Header("Evidence Display")]
+    public Image evidenceDisplayImage; // The blank slot in your gold frame
+    public Sprite casebookSprite;      // The picture of the book
+    public Sprite rubbingSprite;       // The picture of the paper
+    public Sprite clockSprite;         // The picture of the gear
 
     [Header("Cameras")]
     public Camera mainCamera;
@@ -65,6 +72,12 @@ public class NPCInteraction : MonoBehaviour
             if (rubbingButton != null) rubbingButton.SetActive(inv.hasRubbing);
             if (clockButton != null) clockButton.SetActive(inv.hasClock);
         }
+
+        // NEW: Hide the picture frame when the conversation starts!
+        if (evidenceDisplayImage != null)
+        {
+            evidenceDisplayImage.color = new Color(1f, 1f, 1f, 0f); // Alpha to 0
+        }
     }
 
     public void EndConversation()
@@ -74,14 +87,43 @@ public class NPCInteraction : MonoBehaviour
         mainCamera.gameObject.SetActive(true);
         interactionCardCanvas.SetActive(false);
         npcDialogueText.text = "Press E to talk";
+
+        // NEW: Hide the picture frame when you leave!
+        if (evidenceDisplayImage != null)
+        {
+            evidenceDisplayImage.color = new Color(1f, 1f, 1f, 0f);
+        }
     }
 
     // --- UPDATED BUTTON METHODS ---
     public void AskQuestionOne() { npcDialogueText.text = answerOne; }
     public void AskQuestionTwo() { npcDialogueText.text = answerTwo; }
-    public void PresentCasebook() { npcDialogueText.text = evidenceCasebook; }
-    public void PresentRubbing() { npcDialogueText.text = evidenceRubbing; }
-    public void PresentClock() { npcDialogueText.text = evidenceClock; }
+  // --- UPDATED EVIDENCE BUTTON METHODS ---
+    public void PresentCasebook() 
+    { 
+        npcDialogueText.text = evidenceCasebook; 
+        ShowEvidenceImage(casebookSprite); // Show the book!
+    }
+    public void PresentRubbing() 
+    { 
+        npcDialogueText.text = evidenceRubbing; 
+        ShowEvidenceImage(rubbingSprite); // Show the rubbing!
+    }
+    public void PresentClock() 
+    { 
+        npcDialogueText.text = evidenceClock; 
+        ShowEvidenceImage(clockSprite); // Show the gear!
+    }
+
+    // --- NEW HELPER METHOD ---
+    private void ShowEvidenceImage(Sprite itemPicture)
+    {
+        if (evidenceDisplayImage != null && itemPicture != null)
+        {
+            evidenceDisplayImage.sprite = itemPicture; // Swap the picture
+            evidenceDisplayImage.color = new Color(1f, 1f, 1f, 1f); // Make it visible (Alpha 1)
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
