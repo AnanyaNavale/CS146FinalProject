@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro; // Needed to update the text bubble
+using TMPro;
 
 public class CollectibleItem : MonoBehaviour
 {
@@ -7,67 +7,86 @@ public class CollectibleItem : MonoBehaviour
 
     [Header("Item Settings")]
     public ItemType whatItemIsThis;
-
-    [Tooltip("The name of the item (e.g., 'Broken Gear')")]
     public string itemName;
-
-    [Tooltip("A short description of what it is.")]
     [TextArea(2, 4)]
     public string itemDescription;
 
     [Header("UI Elements")]
-    public GameObject pickupPrompt; // The bubble that pops up
-    public TMP_Text promptText; // The text inside the bubble
+    public GameObject pickupPrompt;
+    public TMP_Text promptText;
+
+    [Header("Cameras")]
+    public Camera itemCamera; // The new zoomed-in camera
+    private Camera mainCam;   // The script will find your main camera automatically!
 
     private bool isPlayerInRange = false;
+    private bool isInspecting = false; // Tracks if we are currently zoomed in
 
     void Start()
     {
-        // Hide the prompt when the game starts
-        if (pickupPrompt != null)
-        {
-            pickupPrompt.SetActive(false);
-        }
+        mainCam = Camera.main; // Grabs the scene's Main Camera automatically
 
-        // Combine the name and description into the bubble
-        if (promptText != null)
-        {
-            promptText.text = "<b>" + itemName + "</b>\n<size=80%>" + itemDescription + "</size>\n\n<i>Press E to pick up</i>";
-        }
+        if (itemCamera != null) itemCamera.gameObject.SetActive(false);
+        if (pickupPrompt != null) pickupPrompt.SetActive(false);
+
+        UpdatePromptText("Press E to inspect");
     }
 
     void Update()
     {
-        // If the player is standing on it AND presses E
+        // If the player is in range and presses E...
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            CollectItem();
+            if (!isInspecting)
+            {
+                InspectItem(); // First press: Zoom in!
+            }
+            else
+            {
+                CollectItem(); // Second press: Take it!
+            }
         }
+    }
+
+    void InspectItem()
+    {
+        isInspecting = true;
+
+        // Turn off the main camera and turn on the zoomed camera
+        if (mainCam != null) mainCam.gameObject.SetActive(false);
+        if (itemCamera != null) itemCamera.gameObject.SetActive(true);
+
+        // Update the bubble to show the lore and the new instruction
+        UpdatePromptText("<b>" + itemName + "</b>\n<size=80%>" + itemDescription + "</size>\n\n<i>Press E to take item</i>");
     }
 
     void CollectItem()
     {
-        // Find the player's backpack
-        PlayerInventory inv = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
+        // Turn the main camera back on before destroying the item
+        if (mainCam != null) mainCam.gameObject.SetActive(true);
 
+        PlayerInventory inv = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
         if (inv != null)
         {
-            // Give them the correct item
             if (whatItemIsThis == ItemType.Casebook) inv.hasCasebook = true;
             if (whatItemIsThis == ItemType.Rubbing) inv.hasRubbing = true;
             if (whatItemIsThis == ItemType.Clock) inv.hasClock = true;
 
-            // Destroy the item (and its UI bubble) from the floor
-            Destroy(gameObject);
+            Destroy(gameObject); // Vanish!
         }
+    }
+
+    void UpdatePromptText(string text)
+    {
+        if (promptText != null) promptText.text = text;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isInspecting)
         {
             isPlayerInRange = true;
-            if (pickupPrompt != null) pickupPrompt.SetActive(true); // Show bubble
+            if (pickupPrompt != null) pickupPrompt.SetActive(true);
         }
     }
 
@@ -76,7 +95,7 @@ public class CollectibleItem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInRange = false;
-            if (pickupPrompt != null) pickupPrompt.SetActive(false); // Hide bubble
+            if (pickupPrompt != null) pickupPrompt.SetActive(false);
         }
     }
 }
