@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class NPCInteraction : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class NPCInteraction : MonoBehaviour
     [Header("Cameras")]
     public Camera mainCamera;
     public Camera dialogueCamera;
+
+    [Header("End Game Settings")]
+    public bool isTheCulprit = false;
+    public GameObject winScreenCanvas;
 
     [Header("Dialogue Lines")]
     [TextArea(2, 4)] public string greeting = "Hello, detective. Did you feel the ground shake?";
@@ -108,7 +113,28 @@ public class NPCInteraction : MonoBehaviour
     { 
         npcDialogueText.text = evidenceRubbing; 
         ShowEvidenceImage(rubbingSprite); // Show the rubbing!
+
+        // NEW: If this NPC is the culprit, start the ending sequence!
+        if (isTheCulprit)
+        {
+            StartCoroutine(TriggerGameEnd());
+        }
     }
+
+    // --- NEW: The Countdown Timer Method ---
+    private IEnumerator TriggerGameEnd()
+    {
+        // Wait exactly 6 seconds so the player can read her confession
+        yield return new WaitForSeconds(6f);
+
+        // Turn on the victory screen!
+        if (winScreenCanvas != null)
+        {
+            winScreenCanvas.SetActive(true);
+        }
+    }
+
+
     public void PresentClock() 
     { 
         npcDialogueText.text = evidenceClock; 

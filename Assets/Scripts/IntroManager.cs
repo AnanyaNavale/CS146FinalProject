@@ -1,36 +1,54 @@
 using UnityEngine;
-using UnityEngine.Video; // <-- Required to control video players!
+using UnityEngine.Video;
 
 public class IntroManager : MonoBehaviour
 {
     [Header("Cutscene Settings")]
-    public VideoPlayer introVideo;
+    public VideoPlayer videoPlayer;
+    public VideoClip textVideo;     // Your new plot text video
+    public VideoClip anomalyVideo;  // The clock tower collapse video
     public GameObject player;
+
+    private bool isPlayingSecondVideo = false;
 
     void Start()
     {
-        // 1. Freeze the player so they can't walk around during the video
+        // 1. Freeze the player
         if (player != null)
         {
             player.GetComponent<PlayerMovement>().enabled = false;
         }
 
-        // 2. Tell Unity to listen for the exact moment the video finishes
-        if (introVideo != null)
+        // 2. Set up the video player and tell it what to do when a video ends
+        if (videoPlayer != null)
         {
-            introVideo.loopPointReached += OnVideoEnd;
+            videoPlayer.loopPointReached += OnVideoEnd;
+
+            // Load the first "tape" and hit play!
+            videoPlayer.clip = textVideo;
+            videoPlayer.Play();
         }
     }
 
     void OnVideoEnd(VideoPlayer vp)
     {
-        // 1. Unfreeze the player
-        if (player != null)
+        if (!isPlayingSecondVideo)
         {
-            player.GetComponent<PlayerMovement>().enabled = true;
+            // The text video just finished! Swap to the tower collapse.
+            isPlayingSecondVideo = true;
+            videoPlayer.clip = anomalyVideo;
+            videoPlayer.Play();
         }
+        else
+        {
+            // The tower collapse just finished! Start the game.
+            if (player != null)
+            {
+                player.GetComponent<PlayerMovement>().enabled = true;
+            }
 
-        // 2. Turn off the entire Video Player object so the game world is revealed
-        gameObject.SetActive(false);
+            // Hide the video player screen
+            gameObject.SetActive(false);
+        }
     }
 }
