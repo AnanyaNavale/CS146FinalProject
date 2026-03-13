@@ -12,10 +12,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,5 +45,36 @@ public class PlayerMovement : MonoBehaviour
     {
         // .normalized ensures the player doesn't move faster diagonally
         rb.MovePosition(rb.position + movement.normalized * speed * Time.fixedDeltaTime);
+        
+        // Play walking sound when moving, stop when not
+        if (movement != Vector2.zero)
+        {
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+        }
+        else
+        {
+            audioSource.Stop();
+        }
     }
+
+    // void FixedUpdate()
+    // {
+    //     float horizontal = Input.GetAxis("Horizontal");
+    //     float vertical = Input.GetAxis("Vertical");
+
+    //     Vector2 movement = new Vector2(horizontal, vertical);
+    //     rb.MovePosition(rb.position + movement.normalized * speed * Time.fixedDeltaTime);
+
+    //     // Play walking sound when moving, stop when not
+    //     if (movement != Vector2.zero)
+    //     {
+    //         if (!audioSource.isPlaying)
+    //             audioSource.Play();
+    //     }
+    //     else
+    //     {
+    //         audioSource.Stop();
+    //     }
+    // }
 }
