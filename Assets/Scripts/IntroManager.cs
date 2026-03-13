@@ -5,27 +5,35 @@ public class IntroManager : MonoBehaviour
 {
     [Header("Cutscene Settings")]
     public VideoPlayer videoPlayer;
-    public VideoClip textVideo;     // Your new plot text video
-    public VideoClip anomalyVideo;  // The clock tower collapse video
+    [Tooltip("Type the exact file name with .mp4")]
+    public string textVideoName = "Setup.mp4";
+    public string anomalyVideoName = "5_12_Anomaly.mp4";
     public GameObject player;
+
+    [Header("Start Menu")]
+    public GameObject startMenuCanvas;
 
     private bool isPlayingSecondVideo = false;
 
     void Start()
     {
-        // 1. Freeze the player
-        if (player != null)
-        {
-            player.GetComponent<PlayerMovement>().enabled = false;
-        }
+        if (player != null) player.GetComponent<PlayerMovement>().enabled = false;
+        if (startMenuCanvas != null) startMenuCanvas.SetActive(true);
+    }
 
-        // 2. Set up the video player and tell it what to do when a video ends
+    public void PlayCinematic()
+    {
+        if (startMenuCanvas != null) startMenuCanvas.SetActive(false);
+
         if (videoPlayer != null)
         {
-            videoPlayer.loopPointReached += OnVideoEnd;
+            // Tell the Video Player we are using a file path now, not a clip
+            videoPlayer.source = VideoSource.Url;
 
-            // Load the first "tape" and hit play!
-            videoPlayer.clip = textVideo;
+            // Build the exact web path to your StreamingAssets folder
+            videoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, textVideoName);
+
+            videoPlayer.loopPointReached += OnVideoEnd;
             videoPlayer.Play();
         }
     }
@@ -34,20 +42,14 @@ public class IntroManager : MonoBehaviour
     {
         if (!isPlayingSecondVideo)
         {
-            // The text video just finished! Swap to the tower collapse.
             isPlayingSecondVideo = true;
-            videoPlayer.clip = anomalyVideo;
+            // Load the second tape!
+            videoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, anomalyVideoName);
             videoPlayer.Play();
         }
         else
         {
-            // The tower collapse just finished! Start the game.
-            if (player != null)
-            {
-                player.GetComponent<PlayerMovement>().enabled = true;
-            }
-
-            // Hide the video player screen
+            if (player != null) player.GetComponent<PlayerMovement>().enabled = true;
             gameObject.SetActive(false);
         }
     }
