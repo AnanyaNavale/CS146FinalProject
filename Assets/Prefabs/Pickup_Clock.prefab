@@ -319,6 +319,8 @@ MonoBehaviour:
   pickupPrompt: {fileID: 2805822841487056178}
   promptText: {fileID: 7999145016172416501}
   itemCamera: {fileID: 4330086332365165760}
+  inspectSound: {fileID: 8300000, guid: acf51d1ef9ca145c2b80be56dbab59a4, type: 3}
+  collectSound: {fileID: 8300000, guid: 1785c935f877e4fdd9eaf43c7169edbb, type: 3}
 --- !u!1 &8151188883354978615
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,34 +16,41 @@ public class CollectibleItem : MonoBehaviour
     public TMP_Text promptText;
 
     [Header("Cameras")]
-    public Camera itemCamera; // The new zoomed-in camera
-    private Camera mainCam;   // The script will find your main camera automatically!
+    public Camera itemCamera;
+    private Camera mainCam;
+
+    [Header("Sound Effects")]
+    public AudioClip inspectSound;  // Sound for first E press (inspect)
+    public AudioClip collectSound;  // Sound for second E press (collect)
+    private AudioSource audioSource;
 
     private bool isPlayerInRange = false;
-    private bool isInspecting = false; // Tracks if we are currently zoomed in
+    private bool isInspecting = false;
 
     void Start()
     {
-        mainCam = Camera.main; // Grabs the scene's Main Camera automatically
-
+        mainCam = Camera.main;
         if (itemCamera != null) itemCamera.gameObject.SetActive(false);
         if (pickupPrompt != null) pickupPrompt.SetActive(false);
-
         UpdatePromptText("Press E to inspect");
+
+        // Add an AudioSource component automatically at runtime
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.spatialBlend = 0f; // 2D sound
+        audioSource.playOnAwake = false;
     }
 
     void Update()
     {
-        // If the player is in range and presses E...
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
             if (!isInspecting)
             {
-                InspectItem(); // First press: Zoom in!
+                InspectItem();
             }
             else
             {
-                CollectItem(); // Second press: Take it!
+                CollectItem();
             }
         }
     }
@@ -52,18 +59,24 @@ public class CollectibleItem : MonoBehaviour
     {
         isInspecting = true;
 
-        // Turn off the main camera and turn on the zoomed camera
+        // Play inspect sound at 60% volume
+        if (inspectSound != null) audioSource.PlayOneShot(inspectSound, 0.6f);
+
         if (mainCam != null) mainCam.gameObject.SetActive(false);
         if (itemCamera != null) itemCamera.gameObject.SetActive(true);
-
-        // Update the bubble to show the lore and the new instruction
         UpdatePromptText("<b>" + itemName + "</b>\n<size=80%>" + itemDescription + "</size>\n\n<i>Press E to take item</i>");
     }
 
     void CollectItem()
     {
-        // Turn the main camera back on before destroying the item
+        // Fix the camera FIRST before anything else
+        if (itemCamera != null) itemCamera.gameObject.SetActive(false);
         if (mainCam != null) mainCam.gameObject.SetActive(true);
+
+        // Reset state
+        isInspecting = false;
+        isPlayerInRange = false;
+        if (pickupPrompt != null) pickupPrompt.SetActive(false);
 
         PlayerInventory inv = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
         if (inv != null)
@@ -71,8 +84,21 @@ public class CollectibleItem : MonoBehaviour
             if (whatItemIsThis == ItemType.Casebook) inv.hasCasebook = true;
             if (whatItemIsThis == ItemType.Rubbing) inv.hasRubbing = true;
             if (whatItemIsThis == ItemType.Clock) inv.hasClock = true;
+        }
 
-            Destroy(gameObject); // Vanish!
+        // Hide and disable the object immediately
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+
+        // Play sound then destroy after clip finishes
+        if (collectSound != null)
+        {
+            audioSource.PlayOneShot(collectSound, 0.6f);
+            Destroy(gameObject, collectSound.length);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
